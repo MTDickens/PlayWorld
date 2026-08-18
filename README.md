@@ -80,7 +80,6 @@ data/
     ├── data.json
     └── images/
 ```
-<img width="800" height="267" alt="grasp" src="https://github.com/user-attachments/assets/b7f5b32d-da27-4c2b-95c3-b37f3d603544" />
 ## Inference Protocol
 
 Inference is driven by an **Agent Player**, which consists of two parts:
