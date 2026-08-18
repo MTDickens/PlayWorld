@@ -1,4 +1,3 @@
-
 # PlayWorld: Benchmarking World Models with Agent Players over Long-Horizon Objectives
 
 [Kaixin Ding](https://kxding.github.io/)<sup>1</sup>, [Xi Chen](https://xavierchen34.github.io/)<sup>1</sup>, [Minghong Cai](https://github.com/kxding/PlayWorld)<sup>2</sup>, [Zhiyuan Xu](https://github.com/kxding/PlayWorld)<sup>1</sup>, [Yuxiang Lu](https://github.com/kxding/PlayWorld)<sup>1</sup>, [Yiyang Wang](https://github.com/kxding/PlayWorld)<sup>1</sup>, [Junyi Li](https://github.com/kxding/PlayWorld)<sup>1</sup>, [Shuyang Chen](https://github.com/kxding/PlayWorld)<sup>2</sup>, [Yuan Gao](https://github.com/kxding/PlayWorld)<sup>2</sup>, [Xin Tao](https://www.xtao.website/)<sup>2</sup>, [Pengfei Wan](https://github.com/kxding/PlayWorld)<sup>2</sup>, [Hengshuang Zhao](https://hszhao.github.io/)<sup>1</sup>
@@ -50,6 +49,7 @@ Install the browser runtime when evaluating web-based models such as Genie3 or H
 ```bash
 python3 -m playwright install chromium
 ```
+https://github.com/user-attachments/assets/f5e1708a-f4c0-4fd9-ac8f-891222c2ca08
 
 ## Data Preparation
 
