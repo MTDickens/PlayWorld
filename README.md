@@ -1,3 +1,4 @@
+
 # PlayWorld: Benchmarking World Models with Agent Players over Long-Horizon Objectives
 
 [Kaixin Ding](https://kxding.github.io/)<sup>1</sup>, [Xi Chen](https://xavierchen34.github.io/)<sup>1</sup>, [Minghong Cai](https://github.com/kxding/PlayWorld)<sup>2</sup>, [Zhiyuan Xu](https://github.com/kxding/PlayWorld)<sup>1</sup>, [Yuxiang Lu](https://github.com/kxding/PlayWorld)<sup>1</sup>, [Yiyang Wang](https://github.com/kxding/PlayWorld)<sup>1</sup>, [Junyi Li](https://github.com/kxding/PlayWorld)<sup>1</sup>, [Shuyang Chen](https://github.com/kxding/PlayWorld)<sup>2</sup>, [Yuan Gao](https://github.com/kxding/PlayWorld)<sup>2</sup>, [Xin Tao](https://www.xtao.website/)<sup>2</sup>, [Pengfei Wan](https://github.com/kxding/PlayWorld)<sup>2</sup>, [Hengshuang Zhao](https://hszhao.github.io/)<sup>1</sup>
@@ -29,6 +30,7 @@ PlayWorld/
 ├── run_vqa_score.sh     # root VQA entry point with api_key="xxx"
 └── data/                # downloaded separately; ignored by Git
 ```
+<img width="2530" height="1909" alt="teaser" src="https://github.com/user-attachments/assets/1be6eb7e-6db3-4bc8-9b14-d4ca146896bd" />
 
 ## Installation
 
@@ -78,7 +80,7 @@ data/
     ├── data.json
     └── images/
 ```
-
+<img width="800" height="267" alt="grasp" src="https://github.com/user-attachments/assets/b7f5b32d-da27-4c2b-95c3-b37f3d603544" />
 ## Inference Protocol
 
 Inference is driven by an **Agent Player**, which consists of two parts:
