@@ -20,6 +20,7 @@ import httpx
 
 THIS_DIR = Path(__file__).resolve().parent
 PLAYWORLD_ROOT = THIS_DIR.parents[1]
+LOCAL_DATASUITE_ROOT = PLAYWORLD_ROOT.parent / "datasuite"
 BENCHMARK_DIR = Path(
     os.environ.get(
         "WORLDMODEL_BENCHMARK_DIR",
@@ -27,7 +28,7 @@ BENCHMARK_DIR = Path(
     )
 )
 WORLDPLAY_DIR = Path(
-    os.environ.get("WORLDPLAY_DATA_ROOT", str(BENCHMARK_DIR / "worldplay_0622"))
+    os.environ.get("WORLDPLAY_DATA_ROOT", str(LOCAL_DATASUITE_ROOT))
 )
 DEFAULT_SANA_ROOT = BENCHMARK_DIR / "experiment" / "SANA_WM" / "Sana"
 
@@ -37,6 +38,12 @@ if str(BENCHMARK_DIR) not in sys.path:
 VALID_ACTIONS = ["W", "S", "A", "D", "LEFT", "RIGHT", "UP", "DOWN", "WAIT", "STOP", "END"]
 TOKEN_NORMALIZE = {"←": "LEFT", "→": "RIGHT", "↑": "UP", "↓": "DOWN", "wait": "WAIT"}
 ACTION_SOURCE = "refined"
+DATASET_SPLIT_FILES = {
+    "gc": Path("gc/data.json"),
+    "if": Path("if/data.json"),
+    "insight": Path("insight/data.json"),
+    "outsight": Path("outsight/data.json"),
+}
 
 
 def normalize_action_str(action_str: str) -> str:
@@ -317,14 +324,36 @@ def to_sana_key(action: str) -> str:
     return mp.get(action, "w")
 
 
-def is_oe_insight_wait_only(task: dict) -> bool:
+def is_insight_evolution(task: dict) -> bool:
+    """Recognize the datasuite/insight split and its equivalent task metadata."""
     if str(task.get("category", "")).upper() != "OE":
         return False
-    if str(task.get("sub_category", "")).strip().lower().replace("_", " ") != "insight evolution":
+    split = str(task.get("_dataset_split", "")).strip().lower()
+    sub_category = re.sub(
+        r"[\s_-]+", "", str(task.get("sub_category", "")).strip().lower()
+    )
+    question_categories = {
+        re.sub(r"[\s_-]+", "", str(item.get("category", "")).strip().lower())
+        for item in (task.get("questions") or [])
+        if isinstance(item, dict)
+    }
+    return (
+        split == "insight"
+        or sub_category == "insightevolution"
+        or "insightevolution" in question_categories
+    )
+
+
+def is_oe_insight_wait_only(task: dict) -> bool:
+    if not is_insight_evolution(task):
         return False
     action = str(task.get("action") or "").strip().lower().replace(" ", "")
     steps = [str(x).strip().lower().replace(" ", "") for x in (task.get("action_sequence_steps") or [])]
-    return bool(re.fullmatch(r"wait\*\d+", action) or action == "wait" or (steps and all(x.startswith("wait(") for x in steps)))
+    return bool(
+        re.fullmatch(r"wait\*\d+", action)
+        or action in {"wait", "waitandobserve"}
+        or (steps and all(x.startswith("wait(") for x in steps))
+    )
 
 
 def build_full_sana_action(task: dict, frame_unit: int, tail_frames: int, max_total_frames: int) -> tuple[str, list]:
@@ -920,8 +949,12 @@ def main():
     ACTION_SOURCE = args.action_source
 
     if args.categories:
-        data_base = args.data_base or str(WORLDPLAY_DIR)
-        cat_jsons = {cat: os.path.join(data_base, cat + ".json") for cat in args.categories}
+        data_base = Path(args.data_base or WORLDPLAY_DIR)
+        cat_jsons = {}
+        for category in args.categories:
+            key = category.strip().lower()
+            relative_path = DATASET_SPLIT_FILES.get(key, Path(f"{category}.json"))
+            cat_jsons[category] = str(data_base / relative_path)
     else:
         cat_jsons = {"default": args.mapping_json}
     if not all(cat_jsons.values()):
@@ -938,9 +971,17 @@ def main():
         if args.categories:
             output_dir = output_dir / cat_name
         output_dir.mkdir(parents=True, exist_ok=True)
-        image_base = str(Path(input_json).resolve().parent)
+        input_parent = Path(input_json).resolve().parent
+        image_base = str(
+            input_parent.parent
+            if input_parent.name.lower() in DATASET_SPLIT_FILES
+            else input_parent
+        )
         with open(input_json) as f:
             tasks = json.load(f)
+        dataset_split = Path(input_json).resolve().parent.name.lower()
+        for task in tasks:
+            task["_dataset_split"] = dataset_split
         for t in tasks:
             p = t.get("image_path", "")
             if p and not os.path.isabs(p):

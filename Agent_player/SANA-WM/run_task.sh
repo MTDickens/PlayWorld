@@ -19,15 +19,25 @@ if [[ $# -gt 0 && "${1}" != -* ]]; then
   shift
   IFS=',' read -r -a TASK_IDS_ARRAY <<< "$TASK_IDS_VALUE"
 
-  DATA_ROOT="${SANA_WM_DATA_ROOT:-${REPO_ROOT}/data}"
+  DATA_ROOT="${SANA_WM_DATA_ROOT:-${REPO_ROOT}/../datasuite}"
   MAPPING_JSON="${SANA_WM_MAPPING_JSON:-}"
   if [[ -z "$MAPPING_JSON" ]]; then
     CATEGORY="${TASK_IDS_ARRAY[0]%%[0-9]*}"
-    MAPPING_JSON="${DATA_ROOT}/${CATEGORY}.json"
+    CATEGORY_UPPER="$(printf '%s' "$CATEGORY" | tr '[:lower:]' '[:upper:]')"
+    case "$CATEGORY_UPPER" in
+      GC) DATA_SPLIT="gc" ;;
+      IF) DATA_SPLIT="if" ;;
+      OE) DATA_SPLIT="${SANA_WM_OE_SPLIT:-insight}" ;;
+      *)
+        echo "Cannot infer dataset split from task ID: ${TASK_IDS_ARRAY[0]}" >&2
+        exit 2
+        ;;
+    esac
+    MAPPING_JSON="${DATA_ROOT}/${DATA_SPLIT}/data.json"
   fi
   if [[ ! -f "$MAPPING_JSON" ]]; then
     echo "SANA-WM mapping JSON not found: $MAPPING_JSON" >&2
-    echo "Set SANA_WM_MAPPING_JSON or pass --mapping-json explicitly." >&2
+    echo "Set SANA_WM_DATA_ROOT/SANA_WM_OE_SPLIT, or pass --mapping-json explicitly." >&2
     exit 2
   fi
 
