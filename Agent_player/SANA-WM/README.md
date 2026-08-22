@@ -27,8 +27,9 @@ Agent_player/SANA-WM/run_task.sh IF001
 Agent_player/SANA-WM/run_task.sh OE001
 ```
 
-The default dataset root is the sibling `datasuite/` directory. OE tasks use
-`datasuite/insight/data.json` by default. To run out-of-sight tasks:
+The default dataset root is the repository's `data/` directory, matching the
+other Agent Player adapters. OE tasks use `data/insight/data.json` by default.
+To run out-of-sight tasks:
 
 ```bash
 SANA_WM_OE_SPLIT=outsight Agent_player/SANA-WM/run_task.sh OE014
@@ -37,7 +38,7 @@ SANA_WM_OE_SPLIT=outsight Agent_player/SANA-WM/run_task.sh OE014
 Override the dataset or output location when needed:
 
 ```bash
-SANA_WM_DATA_ROOT=/path/to/datasuite \
+SANA_WM_DATA_ROOT=/path/to/data \
 SANA_WM_OUT_ROOT=/path/to/output \
 Agent_player/SANA-WM/run_task.sh GC001,GC002
 ```

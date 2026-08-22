@@ -20,7 +20,7 @@ import httpx
 
 THIS_DIR = Path(__file__).resolve().parent
 PLAYWORLD_ROOT = THIS_DIR.parents[1]
-LOCAL_DATASUITE_ROOT = PLAYWORLD_ROOT.parent / "datasuite"
+DEFAULT_DATA_ROOT = PLAYWORLD_ROOT / "data"
 BENCHMARK_DIR = Path(
     os.environ.get(
         "WORLDMODEL_BENCHMARK_DIR",
@@ -28,7 +28,7 @@ BENCHMARK_DIR = Path(
     )
 )
 WORLDPLAY_DIR = Path(
-    os.environ.get("WORLDPLAY_DATA_ROOT", str(LOCAL_DATASUITE_ROOT))
+    os.environ.get("WORLDPLAY_DATA_ROOT", str(DEFAULT_DATA_ROOT))
 )
 DEFAULT_SANA_ROOT = BENCHMARK_DIR / "experiment" / "SANA_WM" / "Sana"
 
@@ -325,7 +325,7 @@ def to_sana_key(action: str) -> str:
 
 
 def is_insight_evolution(task: dict) -> bool:
-    """Recognize the datasuite/insight split and its equivalent task metadata."""
+    """Recognize the insight split and its equivalent task metadata."""
     if str(task.get("category", "")).upper() != "OE":
         return False
     split = str(task.get("_dataset_split", "")).strip().lower()

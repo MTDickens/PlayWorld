@@ -19,7 +19,7 @@ if [[ $# -gt 0 && "${1}" != -* ]]; then
   shift
   IFS=',' read -r -a TASK_IDS_ARRAY <<< "$TASK_IDS_VALUE"
 
-  DATA_ROOT="${SANA_WM_DATA_ROOT:-${REPO_ROOT}/../datasuite}"
+  DATA_ROOT="${SANA_WM_DATA_ROOT:-${REPO_ROOT}/data}"
   MAPPING_JSON="${SANA_WM_MAPPING_JSON:-}"
   if [[ -z "$MAPPING_JSON" ]]; then
     CATEGORY="${TASK_IDS_ARRAY[0]%%[0-9]*}"
