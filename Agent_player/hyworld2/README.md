@@ -20,7 +20,7 @@ python3 -m playwright install chromium
 
 ```bash
 Agent_player/hyworld2/launch_chrome_cdp.sh
-HYWORLD2_DATA_ROOT="$PWD/Agent_player/example" \
+HYWORLD2_DATA_ROOT="$PWD/example" \
 Agent_player/hyworld2/run_task.sh GC004
 ```
 

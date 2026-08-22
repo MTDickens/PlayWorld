@@ -3,7 +3,7 @@
     "task_id": "IF046",
     "category": "IF",
     "prompt": "The boy keeps walking straight forward.",
-    "image_path": "IF/004.jpg",
+    "image_path": "IF/005.jpg",
     "image_caption": "A third-person rear view of a young boy standing barefoot at the edge of the ocean during sunset, holding a blue beach bucket, facing small incoming waves and open seawater with wet sand and sea foam around his feet.",
     "perspective": "third person",
     "action": "w*10",

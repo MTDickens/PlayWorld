@@ -130,7 +130,7 @@ Genie3:
 
 ```bash
 Agent_player/genie3/launch_chrome_cdp.sh
-GENIE3_DATA_ROOT="$PWD/Agent_player/example" \
+GENIE3_DATA_ROOT="$PWD/example" \
 GENIE3_DATA_FILES="GC:GC/001.json" \
 Agent_player/genie3/run_task.sh GC004
 ```
@@ -139,7 +139,7 @@ HappyOyster:
 
 ```bash
 Agent_player/happyoyster/launch_chrome_cdp.sh
-HAPPYOYSTER_DATA_ROOT="$PWD/Agent_player/example" \
+HAPPYOYSTER_DATA_ROOT="$PWD/example" \
 HAPPYOYSTER_DATA_FILES="GC:GC/001.json" \
 Agent_player/happyoyster/run_task.sh GC004
 ```
@@ -148,7 +148,7 @@ HYWorld2:
 
 ```bash
 Agent_player/hyworld2/launch_chrome_cdp.sh
-HYWORLD2_DATA_ROOT="$PWD/Agent_player/example" \
+HYWORLD2_DATA_ROOT="$PWD/example" \
 Agent_player/hyworld2/run_task.sh GC004
 ```
 

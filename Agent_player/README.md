@@ -72,23 +72,23 @@ configured through the root `run_vqa_score.sh`.
 ## Run a bundled example
 
 Launch the corresponding dedicated Chrome session, sign in once, then run a
-task from [`Agent_player/example/`](https://github.com/kxding/PlayWorld/tree/main/Agent_player/example).
+task from [`example/`](https://github.com/kxding/PlayWorld/tree/main/example).
 The following commands use `GC/001.jpg` and `GC/001.json`, whose original task
 ID is `GC004`:
 
 ```bash
 Agent_player/genie3/launch_chrome_cdp.sh
-GENIE3_DATA_ROOT="$PWD/Agent_player/example" \
+GENIE3_DATA_ROOT="$PWD/example" \
 GENIE3_DATA_FILES="GC:GC/001.json" \
 Agent_player/genie3/run_task.sh GC004
 
 Agent_player/happyoyster/launch_chrome_cdp.sh
-HAPPYOYSTER_DATA_ROOT="$PWD/Agent_player/example" \
+HAPPYOYSTER_DATA_ROOT="$PWD/example" \
 HAPPYOYSTER_DATA_FILES="GC:GC/001.json" \
 Agent_player/happyoyster/run_task.sh GC004
 
 Agent_player/hyworld2/launch_chrome_cdp.sh
-HYWORLD2_DATA_ROOT="$PWD/Agent_player/example" \
+HYWORLD2_DATA_ROOT="$PWD/example" \
 Agent_player/hyworld2/run_task.sh GC004
 ```
 

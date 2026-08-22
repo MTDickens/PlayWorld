@@ -10,7 +10,7 @@ combined diagnostic modes.
 ```bash
 python3 -m pip install -r Agent_player/happyoyster/requirements.txt
 Agent_player/happyoyster/launch_chrome_cdp.sh
-HAPPYOYSTER_DATA_ROOT="$PWD/Agent_player/example" \
+HAPPYOYSTER_DATA_ROOT="$PWD/example" \
 HAPPYOYSTER_DATA_FILES="GC:GC/001.json" \
 Agent_player/happyoyster/run_task.sh GC004
 ```

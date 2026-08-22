@@ -9,7 +9,7 @@ Claude Haiku as the agent model.
 ```bash
 python3 -m pip install -r Agent_player/genie3/requirements.txt
 Agent_player/genie3/launch_chrome_cdp.sh
-GENIE3_DATA_ROOT="$PWD/Agent_player/example" \
+GENIE3_DATA_ROOT="$PWD/example" \
 GENIE3_DATA_FILES="GC:GC/001.json" \
 Agent_player/genie3/run_task.sh GC004
 ```
