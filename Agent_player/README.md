@@ -5,14 +5,16 @@ The inference-time **Agent Player** consists of an **agent model** and an
 execution harnesses, examples, and model-specific web adapters.
 
 ```text
-Agent_player/
-├── player.py           # shared Agent Interface lifecycle and action parser
-├── api_keys.example.sh # credential placeholders only
+PlayWorld/
 ├── example/            # runnable GC/IF image-task examples
-├── your-models/        # template for integrating another model
-├── genie3/             # complete Genie3 player
-├── happyoyster/        # complete HappyOyster player
-└── hyworld2/           # complete HYWorld2 player
+└── Agent_player/
+    ├── player.py           # shared Agent Interface lifecycle and action parser
+    ├── api_keys.example.sh # credential placeholders only
+    ├── your-models/        # template for integrating another model
+    ├── genie3/             # complete Genie3 player
+    ├── happyoyster/        # complete HappyOyster player
+    ├── hyworld2/           # complete HYWorld2 player
+    └── SANA-WM/            # complete SANA-WM player
 ```
 
 ## Agent Player components

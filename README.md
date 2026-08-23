@@ -14,12 +14,13 @@ PlayWorld therefore drives evaluation by objectives rather than predetermined ac
 
 ```text
 PlayWorld/
+├── example/              # runnable GC/IF image-task examples
 ├── Agent_player/
-│   ├── example/         # runnable GC/IF image-task examples
 │   ├── your-models/     # template for integrating another model
 │   ├── genie3/          # Genie3 player
 │   ├── happyoyster/     # HappyOyster player
-│   └── hyworld2/        # HYWorld2 player
+│   ├── hyworld2/        # HYWorld2 player
+│   └── SANA-WM/         # SANA-WM player
 ├── metrics/
 │   ├── vqa/             # Gemini 3.1 Pro Rubric Verifier
 │   ├── automatic/       # empty; add or adapt automatic metrics here
