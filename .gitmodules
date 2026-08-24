@@ -1,0 +1,3 @@
+[submodule "Agent_player/ReMind"]
+	path = Agent_player/ReMind
+	url = https://github.com/MTDickens/ReMind.git
